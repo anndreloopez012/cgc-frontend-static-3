@@ -34,31 +34,16 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background font-inter">
       <Header 
-        showSidebarButton={true}
+        showSidebarButton={false}
         onSidebarButtonClick={handleOpenSidebarDrawer}
       />
       
-      {/* Layout principal estilo gobierno */}
-      <div className="max-w-7xl mx-auto flex">
-        {/* Menú lateral - Solo visible en desktop */}
-        <aside className="hidden lg:block lg:w-80 xl:w-96 flex-shrink-0">
-          <div className="sticky top-6 p-6">
-            <SidebarMenu />
-          </div>
-        </aside>
-
-        {/* Contenido principal */}
-        <main className="flex-1 min-w-0 px-4 sm:px-6">
-          {/* Contenido principal de la página con slider */}
+      {/* Contenido principal sin sidebar */}
+      <div className="max-w-7xl mx-auto">
+        <main className="px-4 sm:px-6 lg:px-8">
           <HomeContent />
         </main>
       </div>
-
-      {/* Drawer del menú lateral para móviles/tablets */}
-      <SidebarDrawer 
-        isOpen={isSidebarDrawerOpen}
-        onClose={handleCloseSidebarDrawer}
-      />
     </div>
   );
 };

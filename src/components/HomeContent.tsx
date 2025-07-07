@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ChevronRight } from 'lucide-react';
+import { ChevronRight, FileText, Mail, Book, RefreshCcw } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import ImageSlider from './ImageSlider';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
@@ -18,9 +18,34 @@ import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 const HomeContent = () => {
   const navigate = useNavigate();
+  const [menuData, setMenuData] = useState(null);
   const auditoriaSocial = useScrollAnimation();
+  const serviciosUsuarios = useScrollAnimation();
   const servicios = useScrollAnimation();
+  const programasParticipacion = useScrollAnimation();
   const informacionPublica = useScrollAnimation();
+
+  // Mapeo de iconos de Lucide React
+  const iconMap = {
+    FileText,
+    Mail,
+    Book,
+    RefreshCcw
+  };
+
+  // Cargar datos del menú desde JSON
+  useEffect(() => {
+    const loadMenuData = async () => {
+      try {
+        const response = await fetch('/src/data/sidebarMenuAPI.json');
+        const data = await response.json();
+        setMenuData(data.sidebarMenu);
+      } catch (error) {
+        console.error('Error loading sidebar menu data:', error);
+      }
+    };
+    loadMenuData();
+  }, []);
 
   const handleNavigation = (route: string) => {
     navigate(route);
@@ -63,15 +88,15 @@ const HomeContent = () => {
               onClick={() => handleNavigation('/denuncia-ciudadana')}
             >
               <div className="flex items-center space-x-4 w-full">
-                <div className="p-3 rounded bg-white/80 shadow-sm">
+                <div className="p-4 rounded bg-white/80 shadow-sm flex items-center justify-center min-w-[72px] min-h-[72px]">
                   <img 
                     src="https://cdn-icons-png.flaticon.com/512/1161/1161388.png" 
                     alt="Denuncia Ciudadana" 
-                    className="w-8 h-8"
+                    className="w-12 h-12"
                   />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-gray-900">Denuncia Ciudadana</h3>
+                  <h3 className="font-semibold text-gray-900 text-base">Denuncia Ciudadana</h3>
                   <p className="text-sm text-gray-600">contraloria.gob.gt</p>
                 </div>
               </div>
@@ -84,21 +109,60 @@ const HomeContent = () => {
               onClick={() => handleNavigation('/auditoria-participativa')}
             >
               <div className="flex items-center space-x-4 w-full">
-                <div className="p-3 rounded bg-white/80 shadow-sm">
+                <div className="p-4 rounded bg-white/80 shadow-sm flex items-center justify-center min-w-[72px] min-h-[72px]">
                   <img 
                     src="https://cdn-icons-png.flaticon.com/512/1055/1055645.png" 
                     alt="Auditoría Participativa" 
-                    className="w-8 h-8"
+                    className="w-12 h-12"
                   />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-gray-900">Auditoría Participativa</h3>
+                  <h3 className="font-semibold text-gray-900 text-base">Auditoría Participativa</h3>
                   <p className="text-sm text-gray-600">Participación ciudadana</p>
                 </div>
               </div>
             </Button>
           </div>
         </section>
+
+        {/* SERVICIOS A USUARIOS */}
+        {menuData && (
+          <section ref={serviciosUsuarios.elementRef} className={`bg-white p-6 rounded-lg shadow-sm transition-all duration-1000 delay-250 ${serviciosUsuarios.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+            <div className="mb-6">
+              <h2 className="text-2xl font-bold text-gray-900 mb-2">
+                SERVICIOS A USUARIOS
+              </h2>
+              <p className="text-gray-600 text-sm mb-4">
+                {menuData.subtitle}
+              </p>
+              <div className="w-20 h-1 bg-primary rounded-full"></div>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {menuData.menuItems.map((item) => {
+                const IconComponent = iconMap[item.icon] || FileText;
+                return (
+                  <Button
+                    key={item.id}
+                    variant="ghost"
+                    className="h-auto p-4 bg-slate-50 hover:bg-slate-100 transition-all duration-300 
+                      hover:shadow-md border border-slate-200/50 hover:border-slate-300/50 group text-left"
+                    onClick={() => handleNavigation(item.route)}
+                  >
+                    <div className="flex items-center space-x-4 w-full">
+                      <div className="p-4 rounded bg-white/80 shadow-sm flex items-center justify-center min-w-[72px] min-h-[72px]">
+                        <IconComponent className="w-12 h-12 text-slate-700" />
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="font-semibold text-gray-900 text-base">{item.title}</h3>
+                        <p className="text-sm text-gray-600 mt-1">{item.description}</p>
+                      </div>
+                    </div>
+                  </Button>
+                );
+              })}
+            </div>
+          </section>
+        )}
 
         {/* SERVICIOS INTERINSTITUCIONALES */}
         <section ref={servicios.elementRef} className={`bg-white p-6 rounded-lg shadow-sm transition-all duration-1000 delay-300 ${servicios.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
@@ -258,7 +322,7 @@ const HomeContent = () => {
         </section>
 
         {/* PROGRAMAS DE PARTICIPACIÓN CIUDADANA */}
-        <section className={`bg-white p-6 rounded-lg shadow-sm transition-all duration-1000 delay-400`}>
+        <section ref={programasParticipacion.elementRef} className={`bg-white p-6 rounded-lg shadow-sm transition-all duration-1000 delay-400 ${programasParticipacion.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div className="mb-6">
             <h2 className="text-2xl font-bold text-gray-900 mb-2">
               PROGRAMAS DE PARTICIPACIÓN CIUDADANA
@@ -273,15 +337,15 @@ const HomeContent = () => {
               onClick={() => handleNavigation('/sembrando-semillas')}
             >
               <div className="flex items-center space-x-4 w-full">
-                <div className="p-3 rounded bg-white/80 shadow-sm">
+                <div className="p-4 rounded bg-white/80 shadow-sm flex items-center justify-center min-w-[72px] min-h-[72px]">
                   <img 
                     src="https://cdn-icons-png.flaticon.com/512/1161/1161388.png" 
                     alt="Sembrando Semillas" 
-                    className="w-8 h-8"
+                    className="w-12 h-12"
                   />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-gray-900">Sembrando Semillas</h3>
+                  <h3 className="font-semibold text-gray-900 text-base">Sembrando Semillas</h3>
                   <p className="text-sm text-gray-600">Programa educativo</p>
                 </div>
               </div>
@@ -294,15 +358,15 @@ const HomeContent = () => {
               onClick={() => handleNavigation('/organizaciones-padres-familia')}
             >
               <div className="flex items-center space-x-4 w-full">
-                <div className="p-3 rounded bg-white/80 shadow-sm">
+                <div className="p-4 rounded bg-white/80 shadow-sm flex items-center justify-center min-w-[72px] min-h-[72px]">
                   <img 
                     src="https://cdn-icons-png.flaticon.com/512/1055/1055645.png" 
                     alt="Organizaciones de Padres de Familia" 
-                    className="w-8 h-8"
+                    className="w-12 h-12"
                   />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-gray-900">OPF</h3>
+                  <h3 className="font-semibold text-gray-900 text-base">OPF</h3>
                   <p className="text-sm text-gray-600">Organizaciones de Padres de Familia</p>
                 </div>
               </div>
@@ -315,15 +379,15 @@ const HomeContent = () => {
               onClick={() => handleNavigation('/plan-capacitacion-etica')}
             >
               <div className="flex items-center space-x-4 w-full">
-                <div className="p-3 rounded bg-white/80 shadow-sm">
+                <div className="p-4 rounded bg-white/80 shadow-sm flex items-center justify-center min-w-[72px] min-h-[72px]">
                   <img 
                     src="https://cdn-icons-png.flaticon.com/512/2920/2920349.png" 
                     alt="Plan de Capacitación en Ética" 
-                    className="w-8 h-8"
+                    className="w-12 h-12"
                   />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-gray-900">Plan de Capacitación</h3>
+                  <h3 className="font-semibold text-gray-900 text-base">Plan de Capacitación</h3>
                   <p className="text-sm text-gray-600">del Año de la Ética y Probidad 2021</p>
                 </div>
               </div>
@@ -350,16 +414,16 @@ const HomeContent = () => {
               onClick={() => handleNavigation('/informacion-publica-oficio')}
             >
               <div className="flex items-center space-x-4 w-full">
-                <div className="p-3 rounded bg-white/80 shadow-sm">
+                <div className="p-4 rounded bg-white/80 shadow-sm flex items-center justify-center min-w-[72px] min-h-[72px]">
                   <img 
                     src="https://cdn-icons-png.flaticon.com/512/1055/1055645.png" 
                     alt="Información pública de oficio" 
-                    className="w-8 h-8"
+                    className="w-12 h-12"
                   />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-gray-900 text-sm">Información Pública</h3>
-                  <p className="text-xs text-gray-600">de oficio</p>
+                  <h3 className="font-semibold text-gray-900 text-base">Información Pública</h3>
+                  <p className="text-sm text-gray-600">de oficio</p>
                 </div>
               </div>
             </Button>
@@ -371,16 +435,16 @@ const HomeContent = () => {
               onClick={() => handleNavigation('/informes-auditoria')}
             >
               <div className="flex items-center space-x-4 w-full">
-                <div className="p-3 rounded bg-white/80 shadow-sm">
+                <div className="p-4 rounded bg-white/80 shadow-sm flex items-center justify-center min-w-[72px] min-h-[72px]">
                   <img 
                     src="https://cdn-icons-png.flaticon.com/512/2920/2920349.png" 
                     alt="Informes de Auditoría" 
-                    className="w-8 h-8"
+                    className="w-12 h-12"
                   />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-gray-900 text-sm">Informes de</h3>
-                  <p className="text-xs text-gray-600">Auditoría</p>
+                  <h3 className="font-semibold text-gray-900 text-base">Informes de</h3>
+                  <p className="text-sm text-gray-600">Auditoría</p>
                 </div>
               </div>
             </Button>
@@ -392,16 +456,16 @@ const HomeContent = () => {
               onClick={() => handleNavigation('/archivo-general')}
             >
               <div className="flex items-center space-x-4 w-full">
-                <div className="p-3 rounded bg-white/80 shadow-sm">
+                <div className="p-4 rounded bg-white/80 shadow-sm flex items-center justify-center min-w-[72px] min-h-[72px]">
                   <img 
                     src="https://cdn-icons-png.flaticon.com/512/2920/2920277.png" 
                     alt="Archivo General" 
-                    className="w-8 h-8"
+                    className="w-12 h-12"
                   />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-gray-900 text-sm">Archivo</h3>
-                  <p className="text-xs text-gray-600">General</p>
+                  <h3 className="font-semibold text-gray-900 text-base">Archivo</h3>
+                  <p className="text-sm text-gray-600">General</p>
                 </div>
               </div>
             </Button>
