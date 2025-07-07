@@ -251,7 +251,7 @@ const HomeContent = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <Button
               variant="ghost"
-              className="h-36 p-6 bg-gradient-to-br from-blue-600 to-blue-700 hover:scale-105 transition-all duration-300 
+              className="w-36 h-36 p-6 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-full hover:scale-105 transition-all duration-300 
                 hover:shadow-xl group text-center relative overflow-hidden"
               onClick={() => handleNavigation('/sembrando-semillas')}
             >
@@ -259,7 +259,7 @@ const HomeContent = () => {
                 <img 
                   src="https://cdn-icons-png.flaticon.com/512/1161/1161388.png" 
                   alt="Sembrando Semillas" 
-                  className="w-16 h-16 brightness-0 invert drop-shadow-lg"
+                  className="w-20 h-20 brightness-0 invert drop-shadow-lg"
                 />
                 <div className="text-center">
                   <h3 className="font-bold text-white text-sm leading-tight drop-shadow">Sembrando Semillas</h3>
@@ -269,7 +269,7 @@ const HomeContent = () => {
 
             <Button
               variant="ghost"
-              className="h-36 p-6 bg-gradient-to-br from-yellow-500 to-yellow-600 hover:scale-105 transition-all duration-300 
+              className="w-36 h-36 p-6 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-full hover:scale-105 transition-all duration-300 
                 hover:shadow-xl group text-center relative overflow-hidden"
               onClick={() => handleNavigation('/organizaciones-padres-familia')}
             >
@@ -277,7 +277,7 @@ const HomeContent = () => {
                 <img 
                   src="https://cdn-icons-png.flaticon.com/512/1055/1055645.png" 
                   alt="Organizaciones de Padres de Familia" 
-                  className="w-16 h-16 brightness-0 invert drop-shadow-lg"
+                  className="w-20 h-20 brightness-0 invert drop-shadow-lg"
                 />
                 <div className="text-center">
                   <h3 className="font-bold text-white text-sm leading-tight drop-shadow">OPF</h3>
@@ -287,7 +287,7 @@ const HomeContent = () => {
 
             <Button
               variant="ghost"
-              className="h-36 p-6 bg-gradient-to-br from-slate-600 to-slate-700 hover:scale-105 transition-all duration-300 
+              className="w-36 h-36 p-6 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-full hover:scale-105 transition-all duration-300 
                 hover:shadow-xl group text-center relative overflow-hidden"
               onClick={() => handleNavigation('/plan-capacitacion-etica')}
             >
@@ -295,7 +295,7 @@ const HomeContent = () => {
                 <img 
                   src="https://cdn-icons-png.flaticon.com/512/2920/2920349.png" 
                   alt="Plan de Capacitación en Ética" 
-                  className="w-16 h-16 brightness-0 invert drop-shadow-lg"
+                  className="w-20 h-20 brightness-0 invert drop-shadow-lg"
                 />
                 <div className="text-center">
                   <h3 className="font-bold text-white text-sm leading-tight drop-shadow">Plan de Capacitación</h3>
@@ -319,7 +319,7 @@ const HomeContent = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <Button
               variant="ghost"
-              className="h-36 p-6 bg-gradient-to-br from-yellow-500 to-yellow-600 hover:scale-105 transition-all duration-300 
+              className="w-36 h-36 p-6 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-full hover:scale-105 transition-all duration-300 
                 hover:shadow-xl group text-center relative overflow-hidden"
               onClick={() => handleNavigation('/informacion-publica-oficio')}
             >
@@ -327,7 +327,7 @@ const HomeContent = () => {
                 <img 
                   src="https://cdn-icons-png.flaticon.com/512/1055/1055645.png" 
                   alt="Información pública de oficio" 
-                  className="w-16 h-16 brightness-0 invert drop-shadow-lg"
+                  className="w-20 h-20 brightness-0 invert drop-shadow-lg"
                 />
                 <div className="text-center">
                   <h3 className="font-bold text-white text-sm leading-tight drop-shadow">Información Pública de Oficio</h3>
@@ -337,7 +337,7 @@ const HomeContent = () => {
 
             <Button
               variant="ghost"
-              className="h-36 p-6 bg-gradient-to-br from-slate-700 to-slate-800 hover:scale-105 transition-all duration-300 
+              className="w-36 h-36 p-6 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-full hover:scale-105 transition-all duration-300 
                 hover:shadow-xl group text-center relative overflow-hidden"
               onClick={() => handleNavigation('/informes-auditoria')}
             >
@@ -345,7 +345,7 @@ const HomeContent = () => {
                 <img 
                   src="https://cdn-icons-png.flaticon.com/512/2920/2920349.png" 
                   alt="Informes de Auditoría" 
-                  className="w-16 h-16 brightness-0 invert drop-shadow-lg"
+                  className="w-20 h-20 brightness-0 invert drop-shadow-lg"
                 />
                 <div className="text-center">
                   <h3 className="font-bold text-white text-sm leading-tight drop-shadow">Informes de Auditoría</h3>
@@ -355,7 +355,7 @@ const HomeContent = () => {
 
             <Button
               variant="ghost"
-              className="h-36 p-6 bg-gradient-to-br from-blue-800 to-blue-900 hover:scale-105 transition-all duration-300 
+              className="w-36 h-36 p-6 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-full hover:scale-105 transition-all duration-300 
                 hover:shadow-xl group text-center relative overflow-hidden"
               onClick={() => handleNavigation('/archivo-general')}
             >
@@ -363,7 +363,7 @@ const HomeContent = () => {
                 <img 
                   src="https://cdn-icons-png.flaticon.com/512/2920/2920277.png" 
                   alt="Archivo General" 
-                  className="w-16 h-16 brightness-0 invert drop-shadow-lg"
+                  className="w-20 h-20 brightness-0 invert drop-shadow-lg"
                 />
                 <div className="text-center">
                   <h3 className="font-bold text-white text-sm leading-tight drop-shadow">Archivo General</h3>
