@@ -70,37 +70,44 @@ const HomeContent = () => {
       </section>
 
       {/* Secciones de servicios */}
-      <div className="space-y-8">
+      <div className="space-y-0">
         
         {/* SERVICIOS A USUARIOS */}
         {menuData && (
-          <section ref={serviciosUsuarios.elementRef} className={`bg-gradient-to-r from-blue-50 to-blue-100 p-6 rounded-lg shadow-sm transition-all duration-1000 delay-200 ${serviciosUsuarios.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            <div className="mb-6 text-center">
-              <h2 className="text-2xl font-bold text-gray-900 mb-2">
+          <section ref={serviciosUsuarios.elementRef} className={`bg-gradient-to-r from-slate-800 to-slate-900 p-8 transition-all duration-1000 delay-200 ${serviciosUsuarios.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+            <div className="mb-8 text-center">
+              <h2 className="text-3xl font-bold text-white mb-2">
                 SERVICIOS A USUARIOS
               </h2>
-              <p className="text-gray-600 text-sm mb-4">
+              <p className="text-slate-300 text-base mb-4">
                 {menuData.subtitle}
               </p>
-              <div className="w-20 h-1 bg-primary rounded-full mx-auto"></div>
+              <div className="w-20 h-1 bg-yellow-500 rounded-full mx-auto"></div>
             </div>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-              {menuData.menuItems.map((item) => {
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+              {menuData.menuItems.map((item, index) => {
                 const IconComponent = iconMap[item.icon] || FileText;
+                const bgColors = [
+                  'bg-gradient-to-br from-blue-600 to-blue-700',
+                  'bg-gradient-to-br from-yellow-500 to-yellow-600', 
+                  'bg-gradient-to-br from-slate-700 to-slate-800',
+                  'bg-gradient-to-br from-blue-800 to-blue-900',
+                  'bg-gradient-to-br from-yellow-600 to-amber-600',
+                  'bg-gradient-to-br from-slate-600 to-slate-700',
+                  'bg-gradient-to-br from-blue-700 to-indigo-800'
+                ];
                 return (
                   <Button
                     key={item.id}
                     variant="ghost"
-                    className="h-32 p-4 bg-white hover:bg-gray-50 transition-all duration-300 
-                      hover:shadow-lg border border-gray-200/50 hover:border-primary/30 group text-center"
+                    className={`h-36 p-6 ${bgColors[index % bgColors.length]} hover:scale-105 transition-all duration-300 
+                      hover:shadow-xl group text-center relative overflow-hidden`}
                     onClick={() => handleNavigation(item.route)}
                   >
-                    <div className="flex flex-col items-center space-y-3 w-full">
-                      <div className="w-16 h-16 rounded-full bg-blue-600 shadow-lg flex items-center justify-center">
-                        <IconComponent className="w-8 h-8 text-white" />
-                      </div>
+                    <div className="flex flex-col items-center justify-center space-y-3 w-full relative z-10">
+                      <IconComponent className="w-16 h-16 text-white drop-shadow-lg" />
                       <div className="text-center">
-                        <h3 className="font-semibold text-gray-900 text-sm leading-tight">{item.title}</h3>
+                        <h3 className="font-bold text-white text-sm leading-tight drop-shadow">{item.title}</h3>
                       </div>
                     </div>
                   </Button>
@@ -111,316 +118,154 @@ const HomeContent = () => {
         )}
         
         {/* AUDITORÍA SOCIAL */}
-        <section ref={auditoriaSocial.elementRef} className={`bg-gradient-to-r from-orange-50 to-red-50 p-6 rounded-lg shadow-sm transition-all duration-1000 delay-250 ${auditoriaSocial.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <div className="mb-6 text-center">
-            <h2 className="text-2xl font-bold text-gray-900 mb-2">
+        <section ref={auditoriaSocial.elementRef} className={`bg-gradient-to-r from-blue-800 to-blue-900 p-8 transition-all duration-1000 delay-250 ${auditoriaSocial.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          <div className="mb-8 text-center">
+            <h2 className="text-3xl font-bold text-white mb-2">
               AUDITORÍA SOCIAL
             </h2>
-            <div className="w-20 h-1 bg-primary rounded-full mx-auto"></div>
+            <div className="w-20 h-1 bg-yellow-500 rounded-full mx-auto"></div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <Button
               variant="ghost"
-              className="h-32 p-4 bg-white hover:bg-gray-50 transition-all duration-300 
-                hover:shadow-lg border border-gray-200/50 hover:border-primary/30 group text-center"
+              className="h-36 p-6 bg-gradient-to-br from-yellow-500 to-yellow-600 hover:scale-105 transition-all duration-300 
+                hover:shadow-xl group text-center relative overflow-hidden"
               onClick={() => handleNavigation('/denuncia-ciudadana')}
             >
-              <div className="flex flex-col items-center space-y-3 w-full">
-                <div className="w-16 h-16 rounded-full bg-orange-600 shadow-lg flex items-center justify-center">
-                  <img 
-                    src="https://cdn-icons-png.flaticon.com/512/1161/1161388.png" 
-                    alt="Denuncia Ciudadana" 
-                    className="w-8 h-8 brightness-0 invert"
-                  />
-                </div>
+              <div className="flex flex-col items-center justify-center space-y-3 w-full relative z-10">
+                <img 
+                  src="https://cdn-icons-png.flaticon.com/512/1161/1161388.png" 
+                  alt="Denuncia Ciudadana" 
+                  className="w-16 h-16 brightness-0 invert drop-shadow-lg"
+                />
                 <div className="text-center">
-                  <h3 className="font-semibold text-gray-900 text-sm leading-tight">Denuncia Ciudadana</h3>
+                  <h3 className="font-bold text-white text-sm leading-tight drop-shadow">Denuncia Ciudadana</h3>
                 </div>
               </div>
             </Button>
 
             <Button
               variant="ghost"
-              className="h-32 p-4 bg-white hover:bg-gray-50 transition-all duration-300 
-                hover:shadow-lg border border-gray-200/50 hover:border-primary/30 group text-center"
+              className="h-36 p-6 bg-gradient-to-br from-slate-700 to-slate-800 hover:scale-105 transition-all duration-300 
+                hover:shadow-xl group text-center relative overflow-hidden"
               onClick={() => handleNavigation('/auditoria-participativa')}
             >
-              <div className="flex flex-col items-center space-y-3 w-full">
-                <div className="w-16 h-16 rounded-full bg-red-600 shadow-lg flex items-center justify-center">
-                  <img 
-                    src="https://cdn-icons-png.flaticon.com/512/1055/1055645.png" 
-                    alt="Auditoría Participativa" 
-                    className="w-8 h-8 brightness-0 invert"
-                  />
-                </div>
+              <div className="flex flex-col items-center justify-center space-y-3 w-full relative z-10">
+                <img 
+                  src="https://cdn-icons-png.flaticon.com/512/1055/1055645.png" 
+                  alt="Auditoría Participativa" 
+                  className="w-16 h-16 brightness-0 invert drop-shadow-lg"
+                />
                 <div className="text-center">
-                  <h3 className="font-semibold text-gray-900 text-sm leading-tight">Auditoría Participativa</h3>
+                  <h3 className="font-bold text-white text-sm leading-tight drop-shadow">Auditoría Participativa</h3>
                 </div>
               </div>
             </Button>
           </div>
         </section>
 
-
         {/* SERVICIOS INTERINSTITUCIONALES */}
-        <section ref={servicios.elementRef} className={`bg-gradient-to-r from-green-50 to-emerald-50 p-6 rounded-lg shadow-sm transition-all duration-1000 delay-300 ${servicios.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <div className="mb-6 text-center">
-            <h2 className="text-2xl font-bold text-gray-900 mb-2">
+        <section ref={servicios.elementRef} className={`bg-gradient-to-r from-yellow-500 to-yellow-600 p-8 transition-all duration-1000 delay-300 ${servicios.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          <div className="mb-8 text-center">
+            <h2 className="text-3xl font-bold text-white mb-2">
               SERVICIOS INTERINSTITUCIONALES
             </h2>
-            <p className="text-gray-600 text-sm mb-4">
+            <p className="text-yellow-100 text-base mb-4">
               Haga click sobre el servicio de su interés. El enlace abrirá otra pestaña de su navegador.
             </p>
-            <div className="w-20 h-1 bg-primary rounded-full mx-auto"></div>
+            <div className="w-20 h-1 bg-white rounded-full mx-auto"></div>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
-            <Button 
-              variant="ghost" 
-              className="h-32 p-4 bg-white hover:bg-gray-50 transition-all duration-300 hover:shadow-lg border border-gray-200/50 hover:border-primary/30 group text-center" 
-              onClick={() => handleNavigation('/modulo-transicion')}
-            >
-              <div className="flex flex-col items-center space-y-3 w-full">
-                <div className="w-12 h-12 rounded-full bg-green-600 shadow-lg flex items-center justify-center">
-                  <img src="https://cdn-icons-png.flaticon.com/512/2920/2920277.png" alt="Módulo de Transición" className="w-6 h-6 brightness-0 invert" />
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+            {[
+              { route: '/modulo-transicion', title: 'Módulo de Transición', icon: 'https://cdn-icons-png.flaticon.com/512/2920/2920277.png', bg: 'bg-gradient-to-br from-blue-600 to-blue-700' },
+              { route: '/rendicion-cuentas', title: 'Rendición de Cuentas', icon: 'https://cdn-icons-png.flaticon.com/512/1055/1055645.png', bg: 'bg-gradient-to-br from-slate-700 to-slate-800' },
+              { route: '/registro-titulos', title: 'Registro de Títulos', icon: 'https://cdn-icons-png.flaticon.com/512/2920/2920349.png', bg: 'bg-gradient-to-br from-blue-800 to-blue-900' },
+              { route: '/bitacora-electronica', title: 'Bitácora Electrónica', icon: 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png', bg: 'bg-gradient-to-br from-yellow-600 to-amber-600' },
+              { route: '/cgc-modulo-cuentadantes', title: 'Módulo de Cuentadantes', icon: 'https://cdn-icons-png.flaticon.com/512/1077/1077114.png', bg: 'bg-gradient-to-br from-slate-600 to-slate-700' },
+              { route: '/palimnesto', title: 'Palimnesto', icon: 'https://cdn-icons-png.flaticon.com/512/1055/1055687.png', bg: 'bg-gradient-to-br from-blue-700 to-indigo-800' },
+              { route: '/sistema-nominas', title: 'Sistema de Nóminas', icon: 'https://cdn-icons-png.flaticon.com/512/2920/2920277.png', bg: 'bg-gradient-to-br from-yellow-500 to-yellow-600' },
+              { route: '/registro-asesores', title: 'Registro de Asesores', icon: 'https://cdn-icons-png.flaticon.com/512/1055/1055645.png', bg: 'bg-gradient-to-br from-slate-700 to-slate-800' },
+              { route: '/sistema-registro-actas', title: 'Sistema Registro de Actas', icon: 'https://cdn-icons-png.flaticon.com/512/2920/2920349.png', bg: 'bg-gradient-to-br from-blue-800 to-blue-900' },
+              { route: '/rendicion-cuentas-2', title: 'Rendición de Cuentas', icon: 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png', bg: 'bg-gradient-to-br from-yellow-600 to-amber-600' },
+              { route: '/formacion-capacitacion', title: 'Formación y Capacitación', icon: 'https://cdn-icons-png.flaticon.com/512/1077/1077114.png', bg: 'bg-gradient-to-br from-slate-600 to-slate-700' },
+              { route: '/declaraciones-bienes-muebles', title: 'Declaraciones de Bienes Muebles', icon: 'https://cdn-icons-png.flaticon.com/512/1055/1055687.png', bg: 'bg-gradient-to-br from-blue-700 to-indigo-800' }
+            ].map((item, index) => (
+              <Button 
+                key={index}
+                variant="ghost" 
+                className={`h-36 p-6 ${item.bg} hover:scale-105 transition-all duration-300 hover:shadow-xl group text-center relative overflow-hidden`}
+                onClick={() => handleNavigation(item.route)}
+              >
+                <div className="flex flex-col items-center justify-center space-y-3 w-full relative z-10">
+                  <img src={item.icon} alt={item.title} className="w-16 h-16 brightness-0 invert drop-shadow-lg" />
+                  <div className="text-center">
+                    <h3 className="font-bold text-white text-xs leading-tight drop-shadow">{item.title}</h3>
+                  </div>
                 </div>
-                <div className="text-center">
-                  <h3 className="font-semibold text-gray-900 text-xs leading-tight">Módulo de Transición</h3>
-                </div>
-              </div>
-            </Button>
-
-            <Button 
-              variant="ghost" 
-              className="h-32 p-4 bg-white hover:bg-gray-50 transition-all duration-300 hover:shadow-lg border border-gray-200/50 hover:border-primary/30 group text-center" 
-              onClick={() => handleNavigation('/rendicion-cuentas')}
-            >
-              <div className="flex flex-col items-center space-y-3 w-full">
-                <div className="w-12 h-12 rounded-full bg-emerald-600 shadow-lg flex items-center justify-center">
-                  <img src="https://cdn-icons-png.flaticon.com/512/1055/1055645.png" alt="Rendición de Cuentas" className="w-6 h-6 brightness-0 invert" />
-                </div>
-                <div className="text-center">
-                  <h3 className="font-semibold text-gray-900 text-xs leading-tight">Rendición de Cuentas</h3>
-                </div>
-              </div>
-            </Button>
-
-            <Button 
-              variant="ghost" 
-              className="h-32 p-4 bg-white hover:bg-gray-50 transition-all duration-300 hover:shadow-lg border border-gray-200/50 hover:border-primary/30 group text-center" 
-              onClick={() => handleNavigation('/registro-titulos')}
-            >
-              <div className="flex flex-col items-center space-y-3 w-full">
-                <div className="w-12 h-12 rounded-full bg-teal-600 shadow-lg flex items-center justify-center">
-                  <img src="https://cdn-icons-png.flaticon.com/512/2920/2920349.png" alt="Registro de Títulos" className="w-6 h-6 brightness-0 invert" />
-                </div>
-                <div className="text-center">
-                  <h3 className="font-semibold text-gray-900 text-xs leading-tight">Registro de Títulos</h3>
-                </div>
-              </div>
-            </Button>
-
-            <Button 
-              variant="ghost" 
-              className="h-32 p-4 bg-white hover:bg-gray-50 transition-all duration-300 hover:shadow-lg border border-gray-200/50 hover:border-primary/30 group text-center" 
-              onClick={() => handleNavigation('/bitacora-electronica')}
-            >
-              <div className="flex flex-col items-center space-y-3 w-full">
-                <div className="w-12 h-12 rounded-full bg-cyan-600 shadow-lg flex items-center justify-center">
-                  <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Bitácora Electrónica" className="w-6 h-6 brightness-0 invert" />
-                </div>
-                <div className="text-center">
-                  <h3 className="font-semibold text-gray-900 text-xs leading-tight">Bitácora Electrónica</h3>
-                </div>
-              </div>
-            </Button>
-
-            <Button 
-              variant="ghost" 
-              className="h-32 p-4 bg-white hover:bg-gray-50 transition-all duration-300 hover:shadow-lg border border-gray-200/50 hover:border-primary/30 group text-center" 
-              onClick={() => handleNavigation('/cgc-modulo-cuentadantes')}
-            >
-              <div className="flex flex-col items-center space-y-3 w-full">
-                <div className="w-12 h-12 rounded-full bg-lime-600 shadow-lg flex items-center justify-center">
-                  <img src="https://cdn-icons-png.flaticon.com/512/1077/1077114.png" alt="Módulo de Cuentadantes" className="w-6 h-6 brightness-0 invert" />
-                </div>
-                <div className="text-center">
-                  <h3 className="font-semibold text-gray-900 text-xs leading-tight">Módulo de Cuentadantes</h3>
-                </div>
-              </div>
-            </Button>
-
-            <Button 
-              variant="ghost" 
-              className="h-32 p-4 bg-white hover:bg-gray-50 transition-all duration-300 hover:shadow-lg border border-gray-200/50 hover:border-primary/30 group text-center" 
-              onClick={() => handleNavigation('/palimnesto')}
-            >
-              <div className="flex flex-col items-center space-y-3 w-full">
-                <div className="w-12 h-12 rounded-full bg-sky-600 shadow-lg flex items-center justify-center">
-                  <img src="https://cdn-icons-png.flaticon.com/512/1055/1055687.png" alt="Palimnesto" className="w-6 h-6 brightness-0 invert" />
-                </div>
-                <div className="text-center">
-                  <h3 className="font-semibold text-gray-900 text-xs leading-tight">Palimnesto</h3>
-                </div>
-              </div>
-            </Button>
-
-            <Button 
-              variant="ghost" 
-              className="h-32 p-4 bg-white hover:bg-gray-50 transition-all duration-300 hover:shadow-lg border border-gray-200/50 hover:border-primary/30 group text-center" 
-              onClick={() => handleNavigation('/sistema-nominas')}
-            >
-              <div className="flex flex-col items-center space-y-3 w-full">
-                <div className="w-12 h-12 rounded-full bg-indigo-600 shadow-lg flex items-center justify-center">
-                  <img src="https://cdn-icons-png.flaticon.com/512/2920/2920277.png" alt="Sistema de Nóminas" className="w-6 h-6 brightness-0 invert" />
-                </div>
-                <div className="text-center">
-                  <h3 className="font-semibold text-gray-900 text-xs leading-tight">Sistema de Nóminas</h3>
-                </div>
-              </div>
-            </Button>
-
-            <Button 
-              variant="ghost" 
-              className="h-32 p-4 bg-white hover:bg-gray-50 transition-all duration-300 hover:shadow-lg border border-gray-200/50 hover:border-primary/30 group text-center" 
-              onClick={() => handleNavigation('/registro-asesores')}
-            >
-              <div className="flex flex-col items-center space-y-3 w-full">
-                <div className="w-12 h-12 rounded-full bg-violet-600 shadow-lg flex items-center justify-center">
-                  <img src="https://cdn-icons-png.flaticon.com/512/1055/1055645.png" alt="Registro de Asesores" className="w-6 h-6 brightness-0 invert" />
-                </div>
-                <div className="text-center">
-                  <h3 className="font-semibold text-gray-900 text-xs leading-tight">Registro de Asesores</h3>
-                </div>
-              </div>
-            </Button>
-
-            <Button 
-              variant="ghost" 
-              className="h-32 p-4 bg-white hover:bg-gray-50 transition-all duration-300 hover:shadow-lg border border-gray-200/50 hover:border-primary/30 group text-center" 
-              onClick={() => handleNavigation('/sistema-registro-actas')}
-            >
-              <div className="flex flex-col items-center space-y-3 w-full">
-                <div className="w-12 h-12 rounded-full bg-rose-600 shadow-lg flex items-center justify-center">
-                  <img src="https://cdn-icons-png.flaticon.com/512/2920/2920349.png" alt="Sistema Registro de Actas" className="w-6 h-6 brightness-0 invert" />
-                </div>
-                <div className="text-center">
-                  <h3 className="font-semibold text-gray-900 text-xs leading-tight">Sistema Registro de Actas</h3>
-                </div>
-              </div>
-            </Button>
-
-            <Button 
-              variant="ghost" 
-              className="h-32 p-4 bg-white hover:bg-gray-50 transition-all duration-300 hover:shadow-lg border border-gray-200/50 hover:border-primary/30 group text-center" 
-              onClick={() => handleNavigation('/rendicion-cuentas-2')}
-            >
-              <div className="flex flex-col items-center space-y-3 w-full">
-                <div className="w-12 h-12 rounded-full bg-amber-600 shadow-lg flex items-center justify-center">
-                  <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Rendición de Cuentas" className="w-6 h-6 brightness-0 invert" />
-                </div>
-                <div className="text-center">
-                  <h3 className="font-semibold text-gray-900 text-xs leading-tight">Rendición de Cuentas</h3>
-                </div>
-              </div>
-            </Button>
-
-            <Button 
-              variant="ghost" 
-              className="h-32 p-4 bg-white hover:bg-gray-50 transition-all duration-300 hover:shadow-lg border border-gray-200/50 hover:border-primary/30 group text-center" 
-              onClick={() => handleNavigation('/formacion-capacitacion')}
-            >
-              <div className="flex flex-col items-center space-y-3 w-full">
-                <div className="w-12 h-12 rounded-full bg-orange-600 shadow-lg flex items-center justify-center">
-                  <img src="https://cdn-icons-png.flaticon.com/512/1077/1077114.png" alt="Formación y Capacitación" className="w-6 h-6 brightness-0 invert" />
-                </div>
-                <div className="text-center">
-                  <h3 className="font-semibold text-gray-900 text-xs leading-tight">Formación y Capacitación</h3>
-                </div>
-              </div>
-            </Button>
-
-            <Button 
-              variant="ghost" 
-              className="h-32 p-4 bg-white hover:bg-gray-50 transition-all duration-300 hover:shadow-lg border border-gray-200/50 hover:border-primary/30 group text-center" 
-              onClick={() => handleNavigation('/declaraciones-bienes-muebles')}
-            >
-              <div className="flex flex-col items-center space-y-3 w-full">
-                <div className="w-12 h-12 rounded-full bg-pink-600 shadow-lg flex items-center justify-center">
-                  <img src="https://cdn-icons-png.flaticon.com/512/1055/1055687.png" alt="Declaraciones de Bienes Muebles" className="w-6 h-6 brightness-0 invert" />
-                </div>
-                <div className="text-center">
-                  <h3 className="font-semibold text-gray-900 text-xs leading-tight">Declaraciones de Bienes Muebles</h3>
-                </div>
-              </div>
-            </Button>
+              </Button>
+            ))}
           </div>
         </section>
 
         {/* PROGRAMAS DE PARTICIPACIÓN CIUDADANA */}
-        <section ref={programasParticipacion.elementRef} className={`bg-gradient-to-r from-purple-50 to-pink-50 p-6 rounded-lg shadow-sm transition-all duration-1000 delay-400 ${programasParticipacion.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <div className="mb-6 text-center">
-            <h2 className="text-2xl font-bold text-gray-900 mb-2">
+        <section ref={programasParticipacion.elementRef} className={`bg-gradient-to-r from-slate-700 to-slate-800 p-8 transition-all duration-1000 delay-400 ${programasParticipacion.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          <div className="mb-8 text-center">
+            <h2 className="text-3xl font-bold text-white mb-2">
               PROGRAMAS DE PARTICIPACIÓN CIUDADANA
             </h2>
-            <div className="w-20 h-1 bg-primary rounded-full mx-auto"></div>
+            <div className="w-20 h-1 bg-yellow-500 rounded-full mx-auto"></div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <Button
               variant="ghost"
-              className="h-32 p-4 bg-white hover:bg-gray-50 transition-all duration-300 
-                hover:shadow-lg border border-gray-200/50 hover:border-primary/30 group text-center"
+              className="h-36 p-6 bg-gradient-to-br from-blue-600 to-blue-700 hover:scale-105 transition-all duration-300 
+                hover:shadow-xl group text-center relative overflow-hidden"
               onClick={() => handleNavigation('/sembrando-semillas')}
             >
-              <div className="flex flex-col items-center space-y-3 w-full">
-                <div className="w-16 h-16 rounded-full bg-purple-600 shadow-lg flex items-center justify-center">
-                  <img 
-                    src="https://cdn-icons-png.flaticon.com/512/1161/1161388.png" 
-                    alt="Sembrando Semillas" 
-                    className="w-8 h-8 brightness-0 invert"
-                  />
-                </div>
+              <div className="flex flex-col items-center justify-center space-y-3 w-full relative z-10">
+                <img 
+                  src="https://cdn-icons-png.flaticon.com/512/1161/1161388.png" 
+                  alt="Sembrando Semillas" 
+                  className="w-16 h-16 brightness-0 invert drop-shadow-lg"
+                />
                 <div className="text-center">
-                  <h3 className="font-semibold text-gray-900 text-sm leading-tight">Sembrando Semillas</h3>
+                  <h3 className="font-bold text-white text-sm leading-tight drop-shadow">Sembrando Semillas</h3>
                 </div>
               </div>
             </Button>
 
             <Button
               variant="ghost"
-              className="h-32 p-4 bg-white hover:bg-gray-50 transition-all duration-300 
-                hover:shadow-lg border border-gray-200/50 hover:border-primary/30 group text-center"
+              className="h-36 p-6 bg-gradient-to-br from-yellow-500 to-yellow-600 hover:scale-105 transition-all duration-300 
+                hover:shadow-xl group text-center relative overflow-hidden"
               onClick={() => handleNavigation('/organizaciones-padres-familia')}
             >
-              <div className="flex flex-col items-center space-y-3 w-full">
-                <div className="w-16 h-16 rounded-full bg-pink-600 shadow-lg flex items-center justify-center">
-                  <img 
-                    src="https://cdn-icons-png.flaticon.com/512/1055/1055645.png" 
-                    alt="Organizaciones de Padres de Familia" 
-                    className="w-8 h-8 brightness-0 invert"
-                  />
-                </div>
+              <div className="flex flex-col items-center justify-center space-y-3 w-full relative z-10">
+                <img 
+                  src="https://cdn-icons-png.flaticon.com/512/1055/1055645.png" 
+                  alt="Organizaciones de Padres de Familia" 
+                  className="w-16 h-16 brightness-0 invert drop-shadow-lg"
+                />
                 <div className="text-center">
-                  <h3 className="font-semibold text-gray-900 text-sm leading-tight">OPF</h3>
+                  <h3 className="font-bold text-white text-sm leading-tight drop-shadow">OPF</h3>
                 </div>
               </div>
             </Button>
 
             <Button
               variant="ghost"
-              className="h-32 p-4 bg-white hover:bg-gray-50 transition-all duration-300 
-                hover:shadow-lg border border-gray-200/50 hover:border-primary/30 group text-center"
+              className="h-36 p-6 bg-gradient-to-br from-slate-600 to-slate-700 hover:scale-105 transition-all duration-300 
+                hover:shadow-xl group text-center relative overflow-hidden"
               onClick={() => handleNavigation('/plan-capacitacion-etica')}
             >
-              <div className="flex flex-col items-center space-y-3 w-full">
-                <div className="w-16 h-16 rounded-full bg-indigo-600 shadow-lg flex items-center justify-center">
-                  <img 
-                    src="https://cdn-icons-png.flaticon.com/512/2920/2920349.png" 
-                    alt="Plan de Capacitación en Ética" 
-                    className="w-8 h-8 brightness-0 invert"
-                  />
-                </div>
+              <div className="flex flex-col items-center justify-center space-y-3 w-full relative z-10">
+                <img 
+                  src="https://cdn-icons-png.flaticon.com/512/2920/2920349.png" 
+                  alt="Plan de Capacitación en Ética" 
+                  className="w-16 h-16 brightness-0 invert drop-shadow-lg"
+                />
                 <div className="text-center">
-                  <h3 className="font-semibold text-gray-900 text-sm leading-tight">Plan de Capacitación</h3>
+                  <h3 className="font-bold text-white text-sm leading-tight drop-shadow">Plan de Capacitación</h3>
                 </div>
               </div>
             </Button>
@@ -428,73 +273,67 @@ const HomeContent = () => {
         </section>
 
         {/* INFORMACIÓN PÚBLICA */}
-        <section ref={informacionPublica.elementRef} className={`bg-gradient-to-r from-gray-50 to-slate-100 p-6 rounded-lg shadow-sm transition-all duration-1000 delay-500 ${informacionPublica.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <div className="mb-6 text-center">
-            <h2 className="text-2xl font-bold text-gray-900 mb-2">
+        <section ref={informacionPublica.elementRef} className={`bg-gradient-to-r from-blue-700 to-blue-800 p-8 transition-all duration-1000 delay-500 ${informacionPublica.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          <div className="mb-8 text-center">
+            <h2 className="text-3xl font-bold text-white mb-2">
               INFORMACIÓN PÚBLICA
             </h2>
-            <p className="text-gray-600 text-sm mb-4">
+            <p className="text-blue-100 text-base mb-4">
               Haga click sobre el servicio de su interés. El enlace abrirá otra pestaña de su navegador.
             </p>
-            <div className="w-20 h-1 bg-primary rounded-full mx-auto"></div>
+            <div className="w-20 h-1 bg-yellow-500 rounded-full mx-auto"></div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <Button
               variant="ghost"
-              className="h-32 p-4 bg-white hover:bg-gray-50 transition-all duration-300 
-                hover:shadow-lg border border-gray-200/50 hover:border-primary/30 group text-center"
+              className="h-36 p-6 bg-gradient-to-br from-yellow-500 to-yellow-600 hover:scale-105 transition-all duration-300 
+                hover:shadow-xl group text-center relative overflow-hidden"
               onClick={() => handleNavigation('/informacion-publica-oficio')}
             >
-              <div className="flex flex-col items-center space-y-3 w-full">
-                <div className="w-16 h-16 rounded-full bg-gray-600 shadow-lg flex items-center justify-center">
-                  <img 
-                    src="https://cdn-icons-png.flaticon.com/512/1055/1055645.png" 
-                    alt="Información pública de oficio" 
-                    className="w-8 h-8 brightness-0 invert"
-                  />
-                </div>
+              <div className="flex flex-col items-center justify-center space-y-3 w-full relative z-10">
+                <img 
+                  src="https://cdn-icons-png.flaticon.com/512/1055/1055645.png" 
+                  alt="Información pública de oficio" 
+                  className="w-16 h-16 brightness-0 invert drop-shadow-lg"
+                />
                 <div className="text-center">
-                  <h3 className="font-semibold text-gray-900 text-sm leading-tight">Información Pública de Oficio</h3>
+                  <h3 className="font-bold text-white text-sm leading-tight drop-shadow">Información Pública de Oficio</h3>
                 </div>
               </div>
             </Button>
 
             <Button
               variant="ghost"
-              className="h-32 p-4 bg-white hover:bg-gray-50 transition-all duration-300 
-                hover:shadow-lg border border-gray-200/50 hover:border-primary/30 group text-center"
+              className="h-36 p-6 bg-gradient-to-br from-slate-700 to-slate-800 hover:scale-105 transition-all duration-300 
+                hover:shadow-xl group text-center relative overflow-hidden"
               onClick={() => handleNavigation('/informes-auditoria')}
             >
-              <div className="flex flex-col items-center space-y-3 w-full">
-                <div className="w-16 h-16 rounded-full bg-slate-600 shadow-lg flex items-center justify-center">
-                  <img 
-                    src="https://cdn-icons-png.flaticon.com/512/2920/2920349.png" 
-                    alt="Informes de Auditoría" 
-                    className="w-8 h-8 brightness-0 invert"
-                  />
-                </div>
+              <div className="flex flex-col items-center justify-center space-y-3 w-full relative z-10">
+                <img 
+                  src="https://cdn-icons-png.flaticon.com/512/2920/2920349.png" 
+                  alt="Informes de Auditoría" 
+                  className="w-16 h-16 brightness-0 invert drop-shadow-lg"
+                />
                 <div className="text-center">
-                  <h3 className="font-semibold text-gray-900 text-sm leading-tight">Informes de Auditoría</h3>
+                  <h3 className="font-bold text-white text-sm leading-tight drop-shadow">Informes de Auditoría</h3>
                 </div>
               </div>
             </Button>
 
             <Button
               variant="ghost"
-              className="h-32 p-4 bg-white hover:bg-gray-50 transition-all duration-300 
-                hover:shadow-lg border border-gray-200/50 hover:border-primary/30 group text-center"
+              className="h-36 p-6 bg-gradient-to-br from-blue-800 to-blue-900 hover:scale-105 transition-all duration-300 
+                hover:shadow-xl group text-center relative overflow-hidden"
               onClick={() => handleNavigation('/archivo-general')}
             >
-              <div className="flex flex-col items-center space-y-3 w-full">
-                <div className="w-16 h-16 rounded-full bg-zinc-600 shadow-lg flex items-center justify-center">
-                  <img 
-                    src="https://cdn-icons-png.flaticon.com/512/2920/2920277.png" 
-                    alt="Archivo General" 
-                    className="w-8 h-8 brightness-0 invert"
-                  />
-                </div>
+              <div className="flex flex-col items-center justify-center space-y-3 w-full relative z-10">
+                <img 
+                  src="https://cdn-icons-png.flaticon.com/512/2920/2920277.png" 
+                  alt="Archivo General" 
+                  className="w-16 h-16 brightness-0 invert drop-shadow-lg"
+                />
                 <div className="text-center">
-                  <h3 className="font-semibold text-gray-900 text-sm leading-tight">Archivo General</h3>
+                  <h3 className="font-bold text-white text-sm leading-tight drop-shadow">Archivo General</h3>
                 </div>
               </div>
             </Button>
