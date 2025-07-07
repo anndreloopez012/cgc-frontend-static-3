@@ -77,31 +77,31 @@ const HomeContent = () => {
           </h2>
           <div className="w-20 h-1 bg-yellow-500 rounded-full mx-auto"></div>
         </div>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
-            {[
-              { title: 'Estado de Cuenta', route: '/estado-cuenta', icon: 'https://cdn-icons-png.flaticon.com/512/1055/1055645.png' },
-              { title: 'Solicitud de Finiquito', route: '/solicitud-finiquito', icon: 'https://cdn-icons-png.flaticon.com/512/2920/2920349.png' },
-              { title: 'Comunicaciones Electrónicas', route: '/comunicaciones-electronicas', icon: 'https://cdn-icons-png.flaticon.com/512/1161/1161388.png' },
-              { title: 'Registro de Títulos', route: '/registro-titulos', icon: 'https://cdn-icons-png.flaticon.com/512/2920/2920277.png' },
-              { title: 'Actualización de Datos', route: '/actualizacion-datos', icon: 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png' },
-              { title: 'Declaración Jurada Patrimonial', route: '/declaracion-patrimonial', icon: 'https://cdn-icons-png.flaticon.com/512/1077/1077114.png' }
-            ].map((item, index) => (
-              <Button
-                key={index}
-                variant="ghost"
-                className="w-40 h-40 p-4 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-full hover:scale-105 transition-all duration-300 
-                  hover:shadow-xl group text-center relative overflow-hidden"
-                onClick={() => handleNavigation(item.route)}
-              >
-                <div className="flex flex-col items-center justify-center space-y-2 w-full relative z-10">
-                  <img src={item.icon} alt={item.title} className="w-16 h-16 brightness-0 invert drop-shadow-lg" />
-                  <div className="text-center">
-                    <h3 className="font-bold text-white text-xs leading-tight drop-shadow">{item.title}</h3>
-                  </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
+          {[
+            { title: 'Estado de Cuenta', route: '/estado-cuenta', icon: 'https://cdn-icons-png.flaticon.com/512/1055/1055645.png' },
+            { title: 'Solicitud de Finiquito', route: '/solicitud-finiquito', icon: 'https://cdn-icons-png.flaticon.com/512/2920/2920349.png' },
+            { title: 'Comunicaciones Electrónicas', route: '/comunicaciones-electronicas', icon: 'https://cdn-icons-png.flaticon.com/512/1161/1161388.png' },
+            { title: 'Registro de Títulos', route: '/registro-titulos', icon: 'https://cdn-icons-png.flaticon.com/512/2920/2920277.png' },
+            { title: 'Actualización de Datos', route: '/actualizacion-datos', icon: 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png' },
+            { title: 'Declaración Jurada Patrimonial', route: '/declaracion-patrimonial', icon: 'https://cdn-icons-png.flaticon.com/512/1077/1077114.png' }
+          ].map((item, index) => (
+            <Button
+              key={index}
+              variant="ghost"
+              className="h-36 p-6 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-full hover:scale-105 transition-all duration-300 
+                hover:shadow-xl group text-center relative overflow-hidden"
+              onClick={() => handleNavigation(item.route)}
+            >
+              <div className="flex flex-col items-center justify-center space-y-3 w-full relative z-10">
+                <img src={item.icon} alt={item.title} className="w-20 h-20 brightness-0 invert drop-shadow-lg" />
+                <div className="text-center">
+                  <h3 className="font-bold text-white text-sm leading-tight drop-shadow">{item.title}</h3>
                 </div>
-              </Button>
-            ))}
-          </div>
+              </div>
+            </Button>
+          ))}
+        </div>
       </section>
 
       {/* Secciones de servicios */}
@@ -133,14 +133,14 @@ const HomeContent = () => {
                   <Button
                     key={item.id}
                     variant="ghost"
-                    className={`w-36 h-36 p-4 ${bgColors[index % bgColors.length]} rounded-full hover:scale-105 transition-all duration-300 
+                    className={`h-36 p-6 ${bgColors[index % bgColors.length]} hover:scale-105 transition-all duration-300 
                       hover:shadow-xl group text-center relative overflow-hidden`}
                     onClick={() => handleNavigation(item.route)}
                   >
-                    <div className="flex flex-col items-center justify-center space-y-2 w-full relative z-10">
-                      <IconComponent className="w-14 h-14 text-white drop-shadow-lg" />
+                    <div className="flex flex-col items-center justify-center space-y-3 w-full relative z-10">
+                      <IconComponent className="w-16 h-16 text-white drop-shadow-lg" />
                       <div className="text-center">
-                        <h3 className="font-bold text-white text-xs leading-tight drop-shadow">{item.title}</h3>
+                        <h3 className="font-bold text-white text-sm leading-tight drop-shadow">{item.title}</h3>
                       </div>
                     </div>
                   </Button>
@@ -161,36 +161,36 @@ const HomeContent = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <Button
               variant="ghost"
-              className="w-36 h-36 p-4 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-full hover:scale-105 transition-all duration-300 
+              className="h-36 p-6 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-full hover:scale-105 transition-all duration-300 
                 hover:shadow-xl group text-center relative overflow-hidden"
               onClick={() => handleNavigation('/denuncia-ciudadana')}
             >
-              <div className="flex flex-col items-center justify-center space-y-2 w-full relative z-10">
+              <div className="flex flex-col items-center justify-center space-y-3 w-full relative z-10">
                 <img 
                   src="https://cdn-icons-png.flaticon.com/512/1161/1161388.png" 
                   alt="Denuncia Ciudadana" 
-                  className="w-16 h-16 brightness-0 invert drop-shadow-lg"
+                  className="w-20 h-20 brightness-0 invert drop-shadow-lg"
                 />
                 <div className="text-center">
-                  <h3 className="font-bold text-white text-xs leading-tight drop-shadow">Denuncia Ciudadana</h3>
+                  <h3 className="font-bold text-white text-sm leading-tight drop-shadow">Denuncia Ciudadana</h3>
                 </div>
               </div>
             </Button>
 
             <Button
               variant="ghost"
-              className="w-36 h-36 p-4 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-full hover:scale-105 transition-all duration-300 
+              className="h-36 p-6 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-full hover:scale-105 transition-all duration-300 
                 hover:shadow-xl group text-center relative overflow-hidden"
               onClick={() => handleNavigation('/auditoria-participativa')}
             >
-              <div className="flex flex-col items-center justify-center space-y-2 w-full relative z-10">
+              <div className="flex flex-col items-center justify-center space-y-3 w-full relative z-10">
                 <img 
                   src="https://cdn-icons-png.flaticon.com/512/1055/1055645.png" 
                   alt="Auditoría Participativa" 
-                  className="w-16 h-16 brightness-0 invert drop-shadow-lg"
+                  className="w-20 h-20 brightness-0 invert drop-shadow-lg"
                 />
                 <div className="text-center">
-                  <h3 className="font-bold text-white text-xs leading-tight drop-shadow">Auditoría Participativa</h3>
+                  <h3 className="font-bold text-white text-sm leading-tight drop-shadow">Auditoría Participativa</h3>
                 </div>
               </div>
             </Button>
@@ -226,11 +226,11 @@ const HomeContent = () => {
               <Button 
                 key={index}
                 variant="ghost" 
-                className="w-32 h-32 p-3 bg-gradient-to-br from-blue-600 to-blue-700 rounded-full hover:scale-105 transition-all duration-300 hover:shadow-xl group text-center relative overflow-hidden"
+                className="h-36 p-6 bg-gradient-to-br from-blue-600 to-blue-700 rounded-full hover:scale-105 transition-all duration-300 hover:shadow-xl group text-center relative overflow-hidden"
                 onClick={() => handleNavigation(item.route)}
               >
-                <div className="flex flex-col items-center justify-center space-y-1 w-full relative z-10">
-                  <img src={item.icon} alt={item.title} className="w-12 h-12 brightness-0 invert drop-shadow-lg" />
+                <div className="flex flex-col items-center justify-center space-y-3 w-full relative z-10">
+                  <img src={item.icon} alt={item.title} className="w-20 h-20 brightness-0 invert drop-shadow-lg" />
                   <div className="text-center">
                     <h3 className="font-bold text-white text-xs leading-tight drop-shadow">{item.title}</h3>
                   </div>
@@ -251,54 +251,54 @@ const HomeContent = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <Button
               variant="ghost"
-              className="w-36 h-36 p-4 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-full hover:scale-105 transition-all duration-300 
+              className="h-36 p-6 bg-gradient-to-br from-blue-600 to-blue-700 hover:scale-105 transition-all duration-300 
                 hover:shadow-xl group text-center relative overflow-hidden"
               onClick={() => handleNavigation('/sembrando-semillas')}
             >
-              <div className="flex flex-col items-center justify-center space-y-2 w-full relative z-10">
+              <div className="flex flex-col items-center justify-center space-y-3 w-full relative z-10">
                 <img 
                   src="https://cdn-icons-png.flaticon.com/512/1161/1161388.png" 
                   alt="Sembrando Semillas" 
                   className="w-16 h-16 brightness-0 invert drop-shadow-lg"
                 />
                 <div className="text-center">
-                  <h3 className="font-bold text-white text-xs leading-tight drop-shadow">Sembrando Semillas</h3>
+                  <h3 className="font-bold text-white text-sm leading-tight drop-shadow">Sembrando Semillas</h3>
                 </div>
               </div>
             </Button>
 
             <Button
               variant="ghost"
-              className="w-36 h-36 p-4 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-full hover:scale-105 transition-all duration-300 
+              className="h-36 p-6 bg-gradient-to-br from-yellow-500 to-yellow-600 hover:scale-105 transition-all duration-300 
                 hover:shadow-xl group text-center relative overflow-hidden"
               onClick={() => handleNavigation('/organizaciones-padres-familia')}
             >
-              <div className="flex flex-col items-center justify-center space-y-2 w-full relative z-10">
+              <div className="flex flex-col items-center justify-center space-y-3 w-full relative z-10">
                 <img 
                   src="https://cdn-icons-png.flaticon.com/512/1055/1055645.png" 
                   alt="Organizaciones de Padres de Familia" 
                   className="w-16 h-16 brightness-0 invert drop-shadow-lg"
                 />
                 <div className="text-center">
-                  <h3 className="font-bold text-white text-xs leading-tight drop-shadow">OPF</h3>
+                  <h3 className="font-bold text-white text-sm leading-tight drop-shadow">OPF</h3>
                 </div>
               </div>
             </Button>
 
             <Button
               variant="ghost"
-              className="w-36 h-36 p-4 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-full hover:scale-105 transition-all duration-300 
+              className="h-36 p-6 bg-gradient-to-br from-slate-600 to-slate-700 hover:scale-105 transition-all duration-300 
                 hover:shadow-xl group text-center relative overflow-hidden"
               onClick={() => handleNavigation('/plan-capacitacion-etica')}
             >
-              <div className="flex flex-col items-center justify-center space-y-2 w-full relative z-10">
+              <div className="flex flex-col items-center justify-center space-y-3 w-full relative z-10">
                 <img 
                   src="https://cdn-icons-png.flaticon.com/512/2920/2920349.png" 
                   alt="Plan de Capacitación en Ética" 
                   className="w-16 h-16 brightness-0 invert drop-shadow-lg"
                 />
                 <div className="text-center">
-                  <h3 className="font-bold text-white text-xs leading-tight drop-shadow">Plan de Capacitación</h3>
+                  <h3 className="font-bold text-white text-sm leading-tight drop-shadow">Plan de Capacitación</h3>
                 </div>
               </div>
             </Button>
@@ -319,54 +319,54 @@ const HomeContent = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <Button
               variant="ghost"
-              className="w-36 h-36 p-4 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-full hover:scale-105 transition-all duration-300 
+              className="h-36 p-6 bg-gradient-to-br from-yellow-500 to-yellow-600 hover:scale-105 transition-all duration-300 
                 hover:shadow-xl group text-center relative overflow-hidden"
               onClick={() => handleNavigation('/informacion-publica-oficio')}
             >
-              <div className="flex flex-col items-center justify-center space-y-2 w-full relative z-10">
+              <div className="flex flex-col items-center justify-center space-y-3 w-full relative z-10">
                 <img 
                   src="https://cdn-icons-png.flaticon.com/512/1055/1055645.png" 
                   alt="Información pública de oficio" 
                   className="w-16 h-16 brightness-0 invert drop-shadow-lg"
                 />
                 <div className="text-center">
-                  <h3 className="font-bold text-white text-xs leading-tight drop-shadow">Información Pública de Oficio</h3>
+                  <h3 className="font-bold text-white text-sm leading-tight drop-shadow">Información Pública de Oficio</h3>
                 </div>
               </div>
             </Button>
 
             <Button
               variant="ghost"
-              className="w-36 h-36 p-4 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-full hover:scale-105 transition-all duration-300 
+              className="h-36 p-6 bg-gradient-to-br from-slate-700 to-slate-800 hover:scale-105 transition-all duration-300 
                 hover:shadow-xl group text-center relative overflow-hidden"
               onClick={() => handleNavigation('/informes-auditoria')}
             >
-              <div className="flex flex-col items-center justify-center space-y-2 w-full relative z-10">
+              <div className="flex flex-col items-center justify-center space-y-3 w-full relative z-10">
                 <img 
                   src="https://cdn-icons-png.flaticon.com/512/2920/2920349.png" 
                   alt="Informes de Auditoría" 
                   className="w-16 h-16 brightness-0 invert drop-shadow-lg"
                 />
                 <div className="text-center">
-                  <h3 className="font-bold text-white text-xs leading-tight drop-shadow">Informes de Auditoría</h3>
+                  <h3 className="font-bold text-white text-sm leading-tight drop-shadow">Informes de Auditoría</h3>
                 </div>
               </div>
             </Button>
 
             <Button
               variant="ghost"
-              className="w-36 h-36 p-4 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-full hover:scale-105 transition-all duration-300 
+              className="h-36 p-6 bg-gradient-to-br from-blue-800 to-blue-900 hover:scale-105 transition-all duration-300 
                 hover:shadow-xl group text-center relative overflow-hidden"
               onClick={() => handleNavigation('/archivo-general')}
             >
-              <div className="flex flex-col items-center justify-center space-y-2 w-full relative z-10">
+              <div className="flex flex-col items-center justify-center space-y-3 w-full relative z-10">
                 <img 
                   src="https://cdn-icons-png.flaticon.com/512/2920/2920277.png" 
                   alt="Archivo General" 
                   className="w-16 h-16 brightness-0 invert drop-shadow-lg"
                 />
                 <div className="text-center">
-                  <h3 className="font-bold text-white text-xs leading-tight drop-shadow">Archivo General</h3>
+                  <h3 className="font-bold text-white text-sm leading-tight drop-shadow">Archivo General</h3>
                 </div>
               </div>
             </Button>
