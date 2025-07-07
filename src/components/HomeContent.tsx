@@ -69,10 +69,43 @@ const HomeContent = () => {
         </div>
       </section>
 
+      {/* SERVICIOS A USUARIOS */}
+      <section className="bg-gradient-to-r from-blue-50 to-blue-100 p-8">
+        <div className="mb-8 text-center">
+          <h2 className="text-3xl font-bold text-blue-900 mb-2">
+            SERVICIOS A USUARIOS
+          </h2>
+          <div className="w-20 h-1 bg-yellow-500 rounded-full mx-auto"></div>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
+          {[
+            { title: 'Estado de Cuenta', route: '/estado-cuenta', icon: 'https://cdn-icons-png.flaticon.com/512/1055/1055645.png' },
+            { title: 'Solicitud de Finiquito', route: '/solicitud-finiquito', icon: 'https://cdn-icons-png.flaticon.com/512/2920/2920349.png' },
+            { title: 'Comunicaciones Electrónicas', route: '/comunicaciones-electronicas', icon: 'https://cdn-icons-png.flaticon.com/512/1161/1161388.png' },
+            { title: 'Registro de Títulos', route: '/registro-titulos', icon: 'https://cdn-icons-png.flaticon.com/512/2920/2920277.png' },
+            { title: 'Actualización de Datos', route: '/actualizacion-datos', icon: 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png' },
+            { title: 'Declaración Jurada Patrimonial', route: '/declaracion-patrimonial', icon: 'https://cdn-icons-png.flaticon.com/512/1077/1077114.png' }
+          ].map((item, index) => (
+            <Button
+              key={index}
+              variant="ghost"
+              className="h-36 p-6 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-full hover:scale-105 transition-all duration-300 
+                hover:shadow-xl group text-center relative overflow-hidden"
+              onClick={() => handleNavigation(item.route)}
+            >
+              <div className="flex flex-col items-center justify-center space-y-3 w-full relative z-10">
+                <img src={item.icon} alt={item.title} className="w-20 h-20 brightness-0 invert drop-shadow-lg" />
+                <div className="text-center">
+                  <h3 className="font-bold text-white text-sm leading-tight drop-shadow">{item.title}</h3>
+                </div>
+              </div>
+            </Button>
+          ))}
+        </div>
+      </section>
+
       {/* Secciones de servicios */}
-      <div className="space-y-0">
-        
-        {/* SERVICIOS A USUARIOS */}
+      <div className="space-y-0">{/* SERVICIOS A USUARIOS DEL MENU LATERAL - MOVIDO ARRIBA */}
         {menuData && (
           <section ref={serviciosUsuarios.elementRef} className={`bg-gradient-to-r from-slate-800 to-slate-900 p-8 transition-all duration-1000 delay-200 ${serviciosUsuarios.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <div className="mb-8 text-center">
@@ -128,7 +161,7 @@ const HomeContent = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <Button
               variant="ghost"
-              className="h-36 p-6 bg-gradient-to-br from-yellow-500 to-yellow-600 hover:scale-105 transition-all duration-300 
+              className="h-36 p-6 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-full hover:scale-105 transition-all duration-300 
                 hover:shadow-xl group text-center relative overflow-hidden"
               onClick={() => handleNavigation('/denuncia-ciudadana')}
             >
@@ -136,7 +169,7 @@ const HomeContent = () => {
                 <img 
                   src="https://cdn-icons-png.flaticon.com/512/1161/1161388.png" 
                   alt="Denuncia Ciudadana" 
-                  className="w-16 h-16 brightness-0 invert drop-shadow-lg"
+                  className="w-20 h-20 brightness-0 invert drop-shadow-lg"
                 />
                 <div className="text-center">
                   <h3 className="font-bold text-white text-sm leading-tight drop-shadow">Denuncia Ciudadana</h3>
@@ -146,7 +179,7 @@ const HomeContent = () => {
 
             <Button
               variant="ghost"
-              className="h-36 p-6 bg-gradient-to-br from-slate-700 to-slate-800 hover:scale-105 transition-all duration-300 
+              className="h-36 p-6 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-full hover:scale-105 transition-all duration-300 
                 hover:shadow-xl group text-center relative overflow-hidden"
               onClick={() => handleNavigation('/auditoria-participativa')}
             >
@@ -154,7 +187,7 @@ const HomeContent = () => {
                 <img 
                   src="https://cdn-icons-png.flaticon.com/512/1055/1055645.png" 
                   alt="Auditoría Participativa" 
-                  className="w-16 h-16 brightness-0 invert drop-shadow-lg"
+                  className="w-20 h-20 brightness-0 invert drop-shadow-lg"
                 />
                 <div className="text-center">
                   <h3 className="font-bold text-white text-sm leading-tight drop-shadow">Auditoría Participativa</h3>
@@ -177,27 +210,27 @@ const HomeContent = () => {
           </div>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
             {[
-              { route: '/modulo-transicion', title: 'Módulo de Transición', icon: 'https://cdn-icons-png.flaticon.com/512/2920/2920277.png', bg: 'bg-gradient-to-br from-blue-600 to-blue-700' },
-              { route: '/rendicion-cuentas', title: 'Rendición de Cuentas', icon: 'https://cdn-icons-png.flaticon.com/512/1055/1055645.png', bg: 'bg-gradient-to-br from-slate-700 to-slate-800' },
-              { route: '/registro-titulos', title: 'Registro de Títulos', icon: 'https://cdn-icons-png.flaticon.com/512/2920/2920349.png', bg: 'bg-gradient-to-br from-blue-800 to-blue-900' },
-              { route: '/bitacora-electronica', title: 'Bitácora Electrónica', icon: 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png', bg: 'bg-gradient-to-br from-yellow-600 to-amber-600' },
-              { route: '/cgc-modulo-cuentadantes', title: 'Módulo de Cuentadantes', icon: 'https://cdn-icons-png.flaticon.com/512/1077/1077114.png', bg: 'bg-gradient-to-br from-slate-600 to-slate-700' },
-              { route: '/palimnesto', title: 'Palimnesto', icon: 'https://cdn-icons-png.flaticon.com/512/1055/1055687.png', bg: 'bg-gradient-to-br from-blue-700 to-indigo-800' },
-              { route: '/sistema-nominas', title: 'Sistema de Nóminas', icon: 'https://cdn-icons-png.flaticon.com/512/2920/2920277.png', bg: 'bg-gradient-to-br from-yellow-500 to-yellow-600' },
-              { route: '/registro-asesores', title: 'Registro de Asesores', icon: 'https://cdn-icons-png.flaticon.com/512/1055/1055645.png', bg: 'bg-gradient-to-br from-slate-700 to-slate-800' },
-              { route: '/sistema-registro-actas', title: 'Sistema Registro de Actas', icon: 'https://cdn-icons-png.flaticon.com/512/2920/2920349.png', bg: 'bg-gradient-to-br from-blue-800 to-blue-900' },
-              { route: '/rendicion-cuentas-2', title: 'Rendición de Cuentas', icon: 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png', bg: 'bg-gradient-to-br from-yellow-600 to-amber-600' },
-              { route: '/formacion-capacitacion', title: 'Formación y Capacitación', icon: 'https://cdn-icons-png.flaticon.com/512/1077/1077114.png', bg: 'bg-gradient-to-br from-slate-600 to-slate-700' },
-              { route: '/declaraciones-bienes-muebles', title: 'Declaraciones de Bienes Muebles', icon: 'https://cdn-icons-png.flaticon.com/512/1055/1055687.png', bg: 'bg-gradient-to-br from-blue-700 to-indigo-800' }
+              { route: '/modulo-transicion', title: 'Módulo de Transición', icon: 'https://cdn-icons-png.flaticon.com/512/2920/2920277.png' },
+              { route: '/rendicion-cuentas', title: 'Rendición de Cuentas', icon: 'https://cdn-icons-png.flaticon.com/512/1055/1055645.png' },
+              { route: '/registro-titulos', title: 'Registro de Títulos', icon: 'https://cdn-icons-png.flaticon.com/512/2920/2920349.png' },
+              { route: '/bitacora-electronica', title: 'Bitácora Electrónica', icon: 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png' },
+              { route: '/cgc-modulo-cuentadantes', title: 'Módulo de Cuentadantes', icon: 'https://cdn-icons-png.flaticon.com/512/1077/1077114.png' },
+              { route: '/palimnesto', title: 'Palimnesto', icon: 'https://cdn-icons-png.flaticon.com/512/1055/1055687.png' },
+              { route: '/sistema-nominas', title: 'Sistema de Nóminas', icon: 'https://cdn-icons-png.flaticon.com/512/2920/2920277.png' },
+              { route: '/registro-asesores', title: 'Registro de Asesores', icon: 'https://cdn-icons-png.flaticon.com/512/1055/1055645.png' },
+              { route: '/sistema-registro-actas', title: 'Sistema Registro de Actas', icon: 'https://cdn-icons-png.flaticon.com/512/2920/2920349.png' },
+              { route: '/rendicion-cuentas-2', title: 'Rendición de Cuentas', icon: 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png' },
+              { route: '/formacion-capacitacion', title: 'Formación y Capacitación', icon: 'https://cdn-icons-png.flaticon.com/512/1077/1077114.png' },
+              { route: '/declaraciones-bienes-muebles', title: 'Declaraciones de Bienes Muebles', icon: 'https://cdn-icons-png.flaticon.com/512/1055/1055687.png' }
             ].map((item, index) => (
               <Button 
                 key={index}
                 variant="ghost" 
-                className={`h-36 p-6 ${item.bg} hover:scale-105 transition-all duration-300 hover:shadow-xl group text-center relative overflow-hidden`}
+                className="h-36 p-6 bg-gradient-to-br from-blue-600 to-blue-700 rounded-full hover:scale-105 transition-all duration-300 hover:shadow-xl group text-center relative overflow-hidden"
                 onClick={() => handleNavigation(item.route)}
               >
                 <div className="flex flex-col items-center justify-center space-y-3 w-full relative z-10">
-                  <img src={item.icon} alt={item.title} className="w-16 h-16 brightness-0 invert drop-shadow-lg" />
+                  <img src={item.icon} alt={item.title} className="w-20 h-20 brightness-0 invert drop-shadow-lg" />
                   <div className="text-center">
                     <h3 className="font-bold text-white text-xs leading-tight drop-shadow">{item.title}</h3>
                   </div>
