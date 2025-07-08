@@ -159,15 +159,15 @@ const HomeContent = () => {
         </section>
 
         {/* SERVICIOS INTERINSTITUCIONALES */}
-        <section ref={servicios.elementRef} className={`bg-white p-8 transition-all duration-1000 delay-300 ${servicios.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+        <section ref={servicios.elementRef} className={`bg-gradient-to-r from-yellow-500 to-yellow-600 p-8 transition-all duration-1000 delay-300 ${servicios.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div className="mb-8 text-center">
-            <h2 className="text-3xl font-bold text-gray-800 mb-2">
+            <h2 className="text-3xl font-bold text-white mb-2">
               SERVICIOS INTERINSTITUCIONALES
             </h2>
-            <p className="text-gray-600 text-base mb-4">
+            <p className="text-yellow-100 text-base mb-4">
               Haga click sobre el servicio de su interés. El enlace abrirá otra pestaña de su navegador.
             </p>
-            <div className="w-20 h-1 bg-yellow-500 rounded-full mx-auto"></div>
+            <div className="w-20 h-1 bg-white rounded-full mx-auto"></div>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
             {[
@@ -188,7 +188,7 @@ const HomeContent = () => {
                 <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-blue-700 rounded-full flex items-center justify-center hover:scale-105 transition-all duration-300 hover:shadow-xl">
                   <img src={item.icon} alt={item.title} className="w-8 h-8 brightness-0 invert drop-shadow-lg" />
                 </div>
-                <h3 className="font-bold text-gray-800 text-xs text-center leading-tight max-w-20">{item.title}</h3>
+                <h3 className="font-bold text-white text-xs text-center leading-tight max-w-20">{item.title}</h3>
               </div>
             ))}
           </div>
